@@ -1,4 +1,3 @@
-import React from 'react';
 import Searchbar from './Searchbar';
 import "./NavAndSearch.css";
 import type { NavbarProps } from '../../Types'

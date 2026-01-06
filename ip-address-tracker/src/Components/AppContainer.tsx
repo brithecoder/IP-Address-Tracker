@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from './Navbar/Navbar'
 import InfoDisplay from './InfoDisplay/InfoDisplay'
 import MapContainter from './MapContainer/MapContainter'
