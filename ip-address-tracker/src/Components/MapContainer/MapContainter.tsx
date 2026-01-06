@@ -4,19 +4,17 @@ import type {   MapContainerProps  } from '../../Types';
 import "./MapContainer.css";
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'; 
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-
 // Fix Leaflet's default icon issue with Webpack and Vite
-const customMarker = new L.Icon({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+const MyIcon = L.icon({
+    iconUrl: markerIcon,
+    iconRetinaUrl: markerIcon2x,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    shadowSize: [41, 41]
 });
 
 function RecenterMap({ lat, lng }: { lat: number, lng: number }) {
@@ -48,7 +46,7 @@ export default function MapContainter({ data }:  MapContainerProps) {
 
         {data && (
           <>
-            <Marker position={position} icon={customMarker}/>
+            <Marker position={position} icon={MyIcon}/>
             <RecenterMap lat={data.location.lat} lng={data.location.lng} />
           </>
         )}</MapContainer>
