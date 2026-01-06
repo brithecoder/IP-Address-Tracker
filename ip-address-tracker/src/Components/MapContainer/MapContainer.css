@@ -3,3 +3,16 @@
   width: 100%;
   z-index: 1; /* Lower than InfoDisplay */
 }
+.leaflet-marker-pane {
+    z-index: 999 !important;
+}
+
+/* Force the shadow layer to be just behind the marker */
+.leaflet-shadow-pane {
+    z-index: 998 !important;
+}
+
+/* Ensure the tiles stay in the back */
+.leaflet-tile-pane {
+    z-index: 1 !important;
+}
