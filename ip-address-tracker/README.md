@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# 🗺️ IP Address Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive IP Address Tracker built with React, TypeScript, and Vite. This application allows users to search for any IP address or domain and see its location on an interactive map. This Project was fun to build and working with the different APIs really challenged me. I also loved implementing the Info Display CSS. I think the overlap over the navbar and map components adds a nice  touch.I have never used Netlify for deployment before so this was a fun learning activity. 
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+[View the Live Site Here](https://lighthearted-griffin-77664d.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+- **IP/Domain Search:** Look up details for any public IP or domain.
+- **Interactive Map:** Visualizes the location using Leaflet.js with a custom marker.
+- **Automatic Detection:** Shows the user's own IP address on initial load.
+- **Fully Responsive:** Optimized for mobile, tablet, and desktop screens.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Project Highlights
+**Dynamic Search:** Seamlessly track any IPv4/IPv6 address or domain.
 
-## Expanding the ESLint configuration
+**Interactive Mapping:** Utilizes Leaflet.js to provide a real-time, draggable map with custom markers.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Complex UI Layout:** Features a sophisticated CSS "overlap" design where the info panel bridges the gap between the header and the map.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Modern Stack:** Built with React, TypeScript, and Vite for a fast, type-safe developer experience.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧠 Lessons Learned
+This project was a significant milestone in my development journey. Here is what I tackled:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**API Orchestration:** Handling asynchronous data fetching from the IP Geolocation API while managing loading states and error handling.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Advanced CSS Layouts:** I took a deep dive into CSS positioning to create the Info Display component. Getting that "floating" overlap effect between the Navbar and the Map was a rewarding challenge in layout math and z-indexing.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Cloud Deployment:** This was my first time using Netlify! I learned how to configure build settings for nested directories and how to securely manage Environment Variables for API keys in a production environment.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**How I Handled the API Key:**
+**Environment Variables:** I utilized .env files to store sensitive credentials locally, ensuring they are never hard-coded into the components.
+
+**Git Security:** I configured .gitignore to prevent the environment files from being pushed to the public repository.
+
+**Production Safety:** For the live deployment, I used Netlify’s Environment Variables dashboard to securely inject the key into the build process. This prevents the "API key leaked" warnings that often happen in public projects.
+
+## 🛠️ Built With
+- [React](https://reactjs.org/) - Frontend library
+- [Vite](https://vitejs.dev/) - Build tool
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Leaflet.js](https://leafletjs.com/) - Interactive maps
+- [IP Geolocation API by IPify](https://geo.ipify.org/) - IP data
+
+
+## 📸 Preview
+![Project Screenshot](./appSS.png) 
+
+
+## ⚙️ Local Setup
+1. Clone the repo: `git clone <your-repo-link>`
+2. Install dependencies: `npm install`
+3. Create a `.env` file and add: `VITE_IPIFY_API_KEY=your_key_here`
+4. Run the app: `npm run dev`

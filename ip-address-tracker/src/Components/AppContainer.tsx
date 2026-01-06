@@ -17,7 +17,6 @@ export default function AppContainer() {
     // A simple way to check: does it contain letters?
     const isDomain = /[a-zA-Z]/.test(searchTerm);
     const queryParam = isDomain ? `&domain=${searchTerm}` : `&ipAddress=${searchTerm}`;
-
     setUrl(`${BASE_URL}${queryParam}`);
     };
   return (
