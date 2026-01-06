@@ -16,3 +16,8 @@
 .leaflet-tile-pane {
     z-index: 1 !important;
 }
+.leaflet-marker-icon {
+    background: transparent !important;
+    border: none !important;
+    mix-blend-mode: multiply; /* This trick hides a white background if the icon is dark */
+}
