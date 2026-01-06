@@ -2,12 +2,22 @@ import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Vital: the map will look broken without this!
 import type {   MapContainerProps  } from '../../Types';
 import "./MapContainer.css";
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 function RecenterMap({ lat, lng }: { lat: number, lng: number }) {
   const map = useMap();
   map.flyTo([lat, lng], 13, { animate: true, duration: 1.5 });
   return null;
 }
+// Fix Leaflet's default icon issue with Webpack and Vite
+const DefaultIcon = L.icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+});
 
 export default function MapContainter({ data }:  MapContainerProps) {
   // Defensive Default: Start at London or 0,0 if data is null
@@ -32,7 +42,7 @@ export default function MapContainter({ data }:  MapContainerProps) {
 
         {data && (
           <>
-            <Marker position={position} />
+            <Marker position={position} icon={DefaultIcon}/>
             <RecenterMap lat={data.location.lat} lng={data.location.lng} />
           </>
         )}
