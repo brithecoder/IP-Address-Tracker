@@ -30,7 +30,6 @@ export default function MapContainter({ data }:  MapContainerProps) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* 2. Defensive check: Only render marker and recenter if data exists */}
         {data && (
           <>
             <Marker position={position} />
