@@ -6,18 +6,21 @@ import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
+// 1. This fixes the internal Leaflet "ghost" paths
+delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
+
+// Fix Leaflet's default icon issue with Webpack and Vite
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: markerIcon,
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+});
+
 function RecenterMap({ lat, lng }: { lat: number, lng: number }) {
   const map = useMap();
   map.flyTo([lat, lng], 13, { animate: true, duration: 1.5 });
   return null;
 }
-// Fix Leaflet's default icon issue with Webpack and Vite
-const DefaultIcon = L.icon({
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
-});
 
 export default function MapContainter({ data }:  MapContainerProps) {
   // Defensive Default: Start at London or 0,0 if data is null
@@ -42,11 +45,10 @@ export default function MapContainter({ data }:  MapContainerProps) {
 
         {data && (
           <>
-            <Marker position={position} icon={DefaultIcon}/>
+            <Marker position={position}/>
             <RecenterMap lat={data.location.lat} lng={data.location.lng} />
           </>
-        )}
-      </MapContainer>
+        )}</MapContainer>
     </div>
   )
 }
