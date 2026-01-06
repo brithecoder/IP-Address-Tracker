@@ -5,8 +5,8 @@ import MapContainter from './MapContainer/MapContainter'
 import useFetch from '../CustomHooks/useFetch';
 import type { IPData } from '../Types';
 
-
-const BASE_URL = "https://geo.ipify.org/api/v2/country,city?apiKey=at_7FvYqqRqUQDEXDXINN4KIg6IVBAJY";
+const API_KEY = import.meta.env.VITE_IPIFY_API_KEY;
+const BASE_URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}`;
 
 export default function AppContainer() {
 
@@ -26,7 +26,7 @@ export default function AppContainer() {
         <Navbar onSearch={ handleSearch} />
         <InfoDisplay data={data} isLoading={isLoading}/>
         {error && (
-        <div className="error-message">
+        <div className="error-toast error-message">
           <p>⚠️ {error}</p>
         </div>
       )} 
