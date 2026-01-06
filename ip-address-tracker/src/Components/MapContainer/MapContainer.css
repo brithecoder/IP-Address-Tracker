@@ -1,0 +1,5 @@
+.map-wrapper {
+  height: calc(100vh - 280px); /* Adjust based on your header height */
+  width: 100%;
+  z-index: 1; /* Lower than InfoDisplay */
+}

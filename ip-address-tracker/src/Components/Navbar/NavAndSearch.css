@@ -1,0 +1,78 @@
+.navbar-container {
+  /* 1. Set the background image */
+  background-image: url('../../assets/backgroundImg.png'); 
+  
+  /* 2. Make it look professional */
+  background-size: cover;
+  background-position: center;
+   background-repeat: no-repeat; 
+
+  height: 280px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+
+  width: 100%;
+}
+
+.navbar-container h1 {
+  color: white;
+ font-family: "Lilita One", sans-serif;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+
+
+.search-container {
+  display: flex;
+  width: 100%;
+  max-width: 550px;
+  margin: 2rem auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+} 
+
+.search-input {
+  flex-grow: 1;
+  padding: 1.2rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.search-btn {
+  background-color: #000; 
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: #3f3f3f;
+}
+
+.search-btn:disabled {
+  background-color: #969696;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    height: 320px; 
+  }
+
+  .navbar-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-container {
+    max-width: 90%;
+    margin: 1rem auto;
+  }
+}

@@ -1,49 +1,41 @@
+// useFetch.ts
 import { useState, useEffect } from 'react';
 
-function useFetch<T>(url: string, options?: RequestInit) {
+export default function useFetch<T>(initialUrl: string) {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
- 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [url, setUrl] = useState(initialUrl); // Allow the URL to change
+
   useEffect(() => {
-    if (!url) return; // Don't fetch if URL is not provided
- 
-    const controller = new AbortController(); // For cleanup
-    setData(null); // Reset data on new fetch
-    setError(null); // Reset error on new fetch
-    setLoading(true);
- 
+    const controller = new AbortController();
+
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await fetch(url, { ...options, signal: controller.signal });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        const response = await fetch(url, { signal: controller.signal });
+        if (!response.ok) throw new Error("Could not find that IP or Domain");
         const result = await response.json();
         setData(result);
       } catch (err: unknown) {
         if (err instanceof Error) {
         if(err.name !== 'AbortError') {
-         setError(err);
+         setError(err.message);
          }
       } else {
     // Optional: Handle the case where something that isn't an Error was thrown
-            setError(new Error('An unknown error occurred'));
-       }
+            setError('An unknown error occurred');
+      }
       } finally {
         setLoading(false);
       }
     };
- 
+
     fetchData();
- 
-    // Cleanup function
-    return () => {
-      controller.abort();
-    };
-  }, [url, options]); // Re-run if url or options change
- 
-  return { data, loading, error };
+   // Cleanup function: Cancels the request if the URL changes again quickly
+  return () => controller.abort();
+  }, [url]); // Hook refetches whenever the URL changes
+
+  return { data, loading, error, setUrl };
 }
- 
-export default useFetch;

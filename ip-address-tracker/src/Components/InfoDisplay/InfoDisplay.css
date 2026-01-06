@@ -1,0 +1,70 @@
+
+.info-wrapper {
+ position: absolute;
+  /* Adjust this: 280px (header height) minus half of the card height */
+  top: 220px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1100px;
+  z-index: 1000;
+}
+
+
+
+.info-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+  border-left: 1px solid #e0e0e0;
+  padding-left: 2rem;
+}
+
+.info-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.info-item h6 {
+  color: #969696;
+  font-size: 0.7rem;
+  letter-spacing: 0.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-item p {
+  color: #2c2c2c;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .info-wrapper {
+    top: 160px; /* Moves it up slightly on mobile to make room for the map */
+  }
+
+  .info-card {
+    
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    padding: 1.5rem;
+    gap: 1.5rem; /* Adds space between the stacked items */
+  }
+
+  .info-item {
+    border-left: none; /* Remove vertical lines */
+    padding-left: 0;
+  }
+
+  .info-item p {
+    font-size: 1.2rem; /* Shrink text slightly so it fits on one line */
+  }
+}
